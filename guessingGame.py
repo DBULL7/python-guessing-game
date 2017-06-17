@@ -1,3 +1,6 @@
+#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+
+
 import os
 import random
 
@@ -27,7 +30,7 @@ def keepPlaying(attempts):
 
 def makeGuess(attempts):
     if attempts == 0:
-        print('You lose 😭')
+        print('You lose')
         keepPlaying(attempts)
     else:
         guess2 = int(input())
@@ -38,8 +41,10 @@ def playAgain(attempts):
     playAgain = input()
     if playAgain == 'y':
         resetAttempts = 5
-        newGuess = int(input())
         randomNumber = random.randint(1, 100)
+        os.system('clear')
+        print('Enter a number between 1 and 100')
+        newGuess = int(input())
         checkRange(newGuess , resetAttempts)
 
 def compareGuess(guess, attempts):
@@ -47,11 +52,11 @@ def compareGuess(guess, attempts):
         print('Congratulations ' + name + ' you won!')
         playAgain(attempts)
     elif guess > randomNumber:
-        print('Too high')
+        print('Too high, lives remaining: ', attempts - 1)
         newAattempts = attempts - 1
         makeGuess(newAattempts)
     elif guess < randomNumber:
-        print('Too low')
+        print('Too low, lives remaining: ', attempts - 1)
         newAattempts = attempts - 1
         makeGuess(newAattempts)
 
